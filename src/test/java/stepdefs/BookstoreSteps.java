@@ -76,23 +76,13 @@ public class BookstoreSteps {
                 logSafe("📦 Payload:\n" + body);
             }
 
-            Response resp;
-            switch (method.toUpperCase()) {
-                case "GET":
-                    resp = request.get(endpoint);
-                    break;
-                case "POST":
-                    resp = request.post(endpoint);
-                    break;
-                case "PUT":
-                    resp = request.put(endpoint);
-                    break;
-                case "DELETE":
-                    resp = request.delete(endpoint);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unsupported method: " + method);
-            }
+            Response resp = switch (method.toUpperCase()) {
+                case "GET" -> request.get(endpoint);
+                case "POST" -> request.post(endpoint);
+                case "PUT" -> request.put(endpoint);
+                case "DELETE" -> request.delete(endpoint);
+                default -> throw new IllegalArgumentException("Unsupported method: " + method);
+            };
 
             logSafe("📥 Response Status: " + resp.getStatusCode());
             logSafe("📄 Response Body:\n" + resp.getBody().asPrettyString());
@@ -133,6 +123,12 @@ public class BookstoreSteps {
     }
 
     /** Login using a JSON file containing credentials. */
+    @When("I send a POST request to signup with body {string}")
+    public void signUp(String fileName) throws Exception {
+        String body = JsonFileReader.readJsonFromFile(fileName);
+        response = sendRequest("POST", BASE_URL + "/login", body);
+    }
+
     @When("I send a POST request to login with body {string}")
     public void loginWithJsonFile(String fileName) throws Exception {
         String body = JsonFileReader.readJsonFromFile(fileName);

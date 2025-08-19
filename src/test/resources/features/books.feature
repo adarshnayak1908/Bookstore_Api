@@ -15,7 +15,7 @@ Feature: Books API
     And the first book should have a name and author
 
   Scenario: Get a book by valid ID
-    When I send a GET request to books with id 11
+    When I send a GET request to books with id 12
     Then the response status should be 200
 
   Scenario: Get a book by invalid ID
@@ -23,11 +23,11 @@ Feature: Books API
     Then the response status should be 404
 
   Scenario: Update a book with valid data
-    When I send a PUT request to books with id 11 using "updateBook.json"
+    When I send a PUT request to books with id 12 using "updateBook.json"
     Then the response status should be 200
 
   Scenario: Update a book with missing name
-    When I send a PUT request to books with id 11 using "missingTitleBook.json"
+    When I send a PUT request to books with id 12 using "missingTitleBook.json"
     Then the response status should be 400
 
   Scenario: Delete a book by invalid ID
