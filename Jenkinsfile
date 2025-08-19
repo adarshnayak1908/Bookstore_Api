@@ -1,8 +1,10 @@
 // Jenkinsfile
 pipeline {
   agent any
-  tools { jdk 'JDK17'; maven 'Maven3' }
-
+    tools {
+      jdk 'JDK17'      // must match the name you set under Manage Jenkins -> Tools
+      maven 'Maven3'   // same here
+    }
   options {
     timestamps()
     ansiColor('xterm')
