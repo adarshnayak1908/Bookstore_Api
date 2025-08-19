@@ -26,7 +26,7 @@ public class Hooks {
      */
     @BeforeAll
     public static void beforeAll() {
-        TokenManager.prewarm(); // login once, share token for all scenarios
+        TokenManager.prewarm();
     }
 
     /**

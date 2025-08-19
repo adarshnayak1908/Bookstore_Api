@@ -122,7 +122,7 @@ public class BookstoreSteps {
         System.out.println("JWT Token: " + loginResponse.getAccess_token());
     }
 
-    /** Login using a JSON file containing credentials. */
+    /** SignUp using a JSON file containing credentials. */
     @When("I send a POST request to signup with body {string}")
     public void signUp(String fileName) throws Exception {
         String body = JsonFileReader.readJsonFromFile(fileName);
